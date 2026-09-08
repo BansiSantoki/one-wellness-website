@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, NavLink as RouterNavLink, useLocation } from 'react-router-dom';
-import { MenuIcon, XIcon } from 'lucide-react';
+import { MenuIcon, XIcon, Check } from 'lucide-react';
 import { navigationLinks } from '../../data/navigation';
 import { BRAND } from '../../config/site';
 import { Button } from '../ui/Button';
@@ -68,9 +68,10 @@ export function Navbar({ overHero = false }: NavbarProps) {
             <ul className="mt-8 flex-1 space-y-2 overflow-y-auto">
               {navigationLinks.map((link) => (
                 <li key={link.href}>
-                  <RouterNavLink to={link.href} className={({ isActive }) => (isActive ? 'text-brass-dark' : 'text-forest-deep') + ' block border-b border-forest/[0.07] py-4 font-serif text-2xl'}>
-                    {link.label}
-                  </RouterNavLink>
+                    <RouterNavLink to={link.href} className={({ isActive }) => (isActive ? 'text-brass-dark' : 'text-forest-deep') + ' flex items-center gap-3 block border-b border-forest/[0.07] py-4 font-serif text-2xl'}>
+                      <Check className="h-5 w-5 text-brass-light" aria-hidden="true" />
+                      <span>{link.label}</span>
+                    </RouterNavLink>
                 </li>
               ))}
             </ul>
