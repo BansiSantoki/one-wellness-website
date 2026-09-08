@@ -47,7 +47,7 @@ export function Navbar({ overHero = false }: NavbarProps) {
           <Button to="/contact" variant={solid ? 'primary' : 'light'} className="hidden lg:inline-flex">
             Book Consultation
           </Button>
-          <button type="button" onClick={() => setOpen(true)} aria-label="Open menu" aria-expanded={open} className="inline-flex h-10 w-10 items-center justify-center rounded-md border xl:hidden border-forest/15 text-forest hover:border-brass">
+          <button type="button" onClick={() => setOpen((s) => !s)} aria-label="Toggle menu" aria-expanded={open} className="inline-flex h-10 w-10 items-center justify-center rounded-md border xl:hidden border-forest/15 text-forest hover:border-brass">
             <MenuIcon className="h-5 w-5" aria-hidden="true" />
           </button>
         </div>
@@ -57,7 +57,7 @@ export function Navbar({ overHero = false }: NavbarProps) {
       {open && (
         <div className="fixed inset-0 z-[60] xl:hidden">
           <div className="absolute inset-0 bg-forest-deep/50" onClick={() => setOpen(false)} />
-          <div className="absolute inset-y-0 right-0 flex h-full w-full max-w-md flex-col bg-ivory px-6 pb-8 pt-5 shadow-lift sm:px-8" role="dialog" aria-modal="true" aria-label="Site menu">
+          <div className="absolute inset-0 flex flex-col bg-ivory px-6 pb-8 pt-5 shadow-lift sm:px-8" role="dialog" aria-modal="true" aria-label="Site menu">
             <div className="flex items-center justify-between">
               <img src={BRAND.logo} alt="" className="h-20 w-auto object-contain" style={{ mixBlendMode: 'normal', filter: 'brightness(0.85) contrast(1.05) saturate(0.95)' }} />
               <button type="button" onClick={() => setOpen(false)} aria-label="Close menu" className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-forest/15 text-forest transition-colors duration-200 ease-calm hover:border-brass">
@@ -65,10 +65,10 @@ export function Navbar({ overHero = false }: NavbarProps) {
               </button>
             </div>
 
-            <ul className="mt-10 flex-1 space-y-1 overflow-y-auto">
+            <ul className="mt-8 flex-1 space-y-2 overflow-y-auto">
               {navigationLinks.map((link) => (
                 <li key={link.href}>
-                  <RouterNavLink to={link.href} className={({ isActive }) => (isActive ? 'text-brass-dark' : 'text-forest-deep') + ' block border-b border-forest/[0.07] py-3.5 font-serif text-2xl'}>
+                  <RouterNavLink to={link.href} className={({ isActive }) => (isActive ? 'text-brass-dark' : 'text-forest-deep') + ' block border-b border-forest/[0.07] py-4 font-serif text-2xl'}>
                     {link.label}
                   </RouterNavLink>
                 </li>
