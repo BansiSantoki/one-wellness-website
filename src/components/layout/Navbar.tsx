@@ -55,30 +55,33 @@ export function Navbar({ overHero = false }: NavbarProps) {
 
       {/* Mobile menu dialog */}
       {open && (
-        <div className="fixed inset-0 z-[60] xl:hidden">
-          <div className="absolute inset-0 bg-forest-deep/50" onClick={() => setOpen(false)} />
-          <div className="absolute inset-0 flex flex-col bg-forest-deep text-ivory px-6 pb-8 pt-5 shadow-lift sm:px-8" role="dialog" aria-modal="true" aria-label="Site menu">
-            <div className="flex items-center justify-between">
-              <img src={BRAND.logo} alt="" className="h-20 w-auto object-contain" style={{ mixBlendMode: 'normal', filter: 'brightness(0.85) contrast(1.05) saturate(0.95)' }} />
+        <div className="fixed inset-0 z-[99999] xl:hidden" role="presentation">
+          <div className="absolute inset-0 bg-black/40" onClick={() => setOpen(false)} />
+
+          <div className="fixed left-0 right-0 top-[92px] z-[100000] mx-auto w-full max-w-full h-[60vh] max-h-[calc(100vh-92px)] flex flex-col bg-forest-deep text-ivory overflow-y-auto" role="dialog" aria-modal="true" aria-label="Site menu">
+            <div className="h-[92px] w-full flex items-center justify-between px-6 sm:px-8 border-b border-forest/[0.06]">
+              <img src={BRAND.logo} alt="" className="h-16 w-auto object-contain" style={{ mixBlendMode: 'normal', filter: 'brightness(0.85) contrast(1.05) saturate(0.95)' }} />
               <button type="button" onClick={() => setOpen(false)} aria-label="Close menu" className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-forest/15 text-ivory transition-colors duration-200 ease-calm hover:border-brass">
                 <XIcon className="h-5 w-5" aria-hidden="true" />
               </button>
             </div>
 
-            <ul className="mt-8 flex-1 space-y-2 overflow-y-auto">
-              {navigationLinks.map((link) => (
-                <li key={link.href}>
-                    <RouterNavLink to={link.href} className={({ isActive }) => (isActive ? 'text-brass-dark' : 'text-forest-deep') + ' flex items-center gap-3 block border-b border-forest/[0.07] py-4 font-serif text-2xl'}>
-                      <Check className="h-5 w-5 text-brass-light" aria-hidden="true" />
+            <div className="px-6 sm:px-8 py-6">
+              <ul className="flex-1 space-y-4 pb-6">
+                {navigationLinks.map((link) => (
+                  <li key={link.href}>
+                    <RouterNavLink to={link.href} onClick={() => setOpen(false)} className="flex items-center gap-3 block border-b border-forest/[0.07] py-4 font-serif text-2xl">
+                      <span className="h-5 w-5 flex items-center justify-center text-brass-light">•</span>
                       <span className="text-ivory">{link.label}</span>
                     </RouterNavLink>
-                </li>
-              ))}
-            </ul>
+                  </li>
+                ))}
+              </ul>
 
-            <Button to="/contact" size="lg" className="mt-8 w-full">
-              Book Consultation
-            </Button>
+              <Button to="/contact" size="lg" className="w-full">
+                Book Consultation
+              </Button>
+            </div>
           </div>
         </div>
       )}
