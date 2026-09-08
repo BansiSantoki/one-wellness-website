@@ -47,8 +47,8 @@ export function Navbar({ overHero = false }: NavbarProps) {
           <Button to="/contact" variant={solid ? 'primary' : 'light'} className="hidden lg:inline-flex">
             Book Consultation
           </Button>
-          <button type="button" onClick={() => setOpen((s) => !s)} aria-label="Toggle menu" aria-expanded={open} className="inline-flex h-10 w-10 items-center justify-center rounded-md border xl:hidden border-forest/15 text-forest hover:border-brass">
-            <MenuIcon className="h-5 w-5" aria-hidden="true" />
+          <button type="button" onClick={() => setOpen((s) => !s)} aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} className="inline-flex h-10 w-10 items-center justify-center rounded-md border xl:hidden border-forest/15 text-forest hover:border-brass">
+            {open ? <XIcon className="h-5 w-5" aria-hidden="true" /> : <MenuIcon className="h-5 w-5" aria-hidden="true" />}
           </button>
         </div>
       </nav>
@@ -57,10 +57,10 @@ export function Navbar({ overHero = false }: NavbarProps) {
       {open && (
         <div className="fixed inset-0 z-[60] xl:hidden">
           <div className="absolute inset-0 bg-forest-deep/50" onClick={() => setOpen(false)} />
-          <div className="absolute inset-0 flex flex-col bg-ivory px-6 pb-8 pt-5 shadow-lift sm:px-8" role="dialog" aria-modal="true" aria-label="Site menu">
+          <div className="absolute inset-0 flex flex-col bg-forest-deep text-ivory px-6 pb-8 pt-5 shadow-lift sm:px-8" role="dialog" aria-modal="true" aria-label="Site menu">
             <div className="flex items-center justify-between">
               <img src={BRAND.logo} alt="" className="h-20 w-auto object-contain" style={{ mixBlendMode: 'normal', filter: 'brightness(0.85) contrast(1.05) saturate(0.95)' }} />
-              <button type="button" onClick={() => setOpen(false)} aria-label="Close menu" className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-forest/15 text-forest transition-colors duration-200 ease-calm hover:border-brass">
+              <button type="button" onClick={() => setOpen(false)} aria-label="Close menu" className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-forest/15 text-ivory transition-colors duration-200 ease-calm hover:border-brass">
                 <XIcon className="h-5 w-5" aria-hidden="true" />
               </button>
             </div>
@@ -70,7 +70,7 @@ export function Navbar({ overHero = false }: NavbarProps) {
                 <li key={link.href}>
                     <RouterNavLink to={link.href} className={({ isActive }) => (isActive ? 'text-brass-dark' : 'text-forest-deep') + ' flex items-center gap-3 block border-b border-forest/[0.07] py-4 font-serif text-2xl'}>
                       <Check className="h-5 w-5 text-brass-light" aria-hidden="true" />
-                      <span>{link.label}</span>
+                      <span className="text-ivory">{link.label}</span>
                     </RouterNavLink>
                 </li>
               ))}
